@@ -1,0 +1,17 @@
+{
+  "roles": [
+    "guest",
+    "admin",
+    "manager",
+    "staff",
+    "editor"
+  ],
+  "resources": {
+    "adminarea": {
+      "access": "admin"
+    },
+    "login": {
+      "access": "manager"
+    }
+  }
+}
