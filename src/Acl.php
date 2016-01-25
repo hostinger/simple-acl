@@ -155,8 +155,8 @@ class Acl
             $this->resources[$nkey . $key] = $access;
 
             
-            if (isset($value['childs']) && is_array($value['childs'])) {
-                $narr = array_merge($narr, $this->parseRecursiveResources($value['childs'], $narr, $access, $nkey . $key . '.'));
+            if (isset($value['children']) && is_array($value['children'])) {
+                $narr = array_merge($narr, $this->parseRecursiveResources($value['children'], $narr, $access, $nkey . $key . '.'));
             } else {
                 $narr[$nkey . $key] = $value;
             }
