@@ -1,0 +1,40 @@
+{
+    "roles": [
+        "management",
+        "devs",
+        "support",
+        "guest"
+    ],
+    "resources": {
+        "someProject": {
+            "access": [
+                "devs",
+                "management"
+            ],
+            "children": {
+                "login": {
+                    "access": [
+                        "guest"
+                    ]
+                },
+                "tickets": {
+                    "access": [
+                        "support"
+                    ]
+                }
+            }
+        },
+        "someOtherProject": {
+            "access": [
+                "management"
+            ],
+            "children": {
+                "debug": {
+                    "access": [
+                        "devs"
+                    ]
+                }
+            }
+        }
+    }
+}
