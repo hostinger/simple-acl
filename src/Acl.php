@@ -143,7 +143,9 @@ class Acl
     {
         foreach ($arr as $key => $value) {
             $this->resources[$nkey . $key] = array();
-            
+
+            $access = [];
+
             if (isset($value['access']) && is_array($value['access'])) {
                 foreach ($value['access'] as $acc) {
                     if (!in_array($acc, $access)) {
