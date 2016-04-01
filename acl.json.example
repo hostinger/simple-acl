@@ -1,4 +1,8 @@
 {
+    "users": {
+        "john.doe@example.com": "management",
+        "jane.doe@example.net": "devs"
+    },
     "roles": [
         "management",
         "devs",
