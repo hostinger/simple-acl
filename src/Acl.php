@@ -49,6 +49,17 @@ class Acl
     private $resources = array();
 
     /**
+     * default user role that will be applied for users if they are not listed
+     * in config file and their user identifier is non-empty
+     *
+     * (default value: array())
+     *
+     * @var array
+     * @access private
+     */
+    private $defaultUserRole = "";
+
+    /**
      * access
      *
      * (default value: array())
@@ -111,9 +122,16 @@ class Acl
      * @access private
      * @return void
      */
-    public function parseUserRoles(){
-        if(isset($this->rawConfig['users']) && is_array($this->rawConfig['users'])){
+    public function parseUserRoles()
+    {
+        if (isset($this->rawConfig['users']) && is_array($this->rawConfig['users'])) {
             $this->userRoles = $this->rawConfig['users'];
+        }
+
+        if (isset($this->rawConfig['default_user_role'])){
+            if($this->checkIfRoleExists($this->rawConfig['default_user_role'])){
+                $this->defaultUserRole = $this->rawConfig['default_user_role'];
+            }
         }
     }
 
@@ -268,10 +286,17 @@ class Acl
      * @return bool
      */
     public function checkUser($user, $resource){
-        if(!isset($this->userRoles[$user])){
+        if(empty($user)){
             return false;
         }
-        return $this->check($this->userRoles[$user], $resource);
+
+        if(!isset($this->userRoles[$user]) && empty($this->defaultUserRole)){
+            return false;
+        }
+
+        $role = isset($this->userRoles[$user]) ? $this->userRoles[$user] : $this->defaultUserRole;
+
+        return $this->check($role, $resource);
     }
 
     /**

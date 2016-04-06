@@ -3,6 +3,7 @@
         "john.doe@example.com": "management",
         "jane.doe@example.net": "devs"
     },
+    "default_user_role": "guest",
     "roles": [
         "management",
         "devs",
